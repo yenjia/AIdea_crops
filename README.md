@@ -1,14 +1,23 @@
 # Crop_Classification
+
+## Setting the environment
+```
+pip install -r requirements.txt
+```
+
+## Download the checkpoint 
+You can download the checkpoints from Google Drive: 
+
 ## How to train the model?
-* `net.py` 中已經預設幾個 model 可供選擇
-* Example: 在 command 資料夾中執行 `source train.sh ../config/regnet` 即可訓練
-  * 需要注意的事：datalist 與 data 需要先準備好，並修改 config file 裡的路徑
+* There are some default models in the file `net.py`
+* Example: run `source train.sh ../config/regnet`
+  * Note: You need to prepare datalist and  data first, and modify the path in the config file
 
 
-### YAML 檔結構
-```python
-name: swin_s_1080 （跟 log, checkpoint 資料夾名字有關）
-savepath: v4 （跟 log, checkpoint 資料夾名字有關）
+### The Structure of YAML
+```
+name: swin_s_1080 (Related to folder name of log and checkpoint)
+savepath: v4 (Related to folder name of log and checkpoint )
 epoches: 150
 strategy: ddp
 accumulate_batches: 1
@@ -17,9 +26,9 @@ gradient_clip_val: 5.0
 data_config:
   batch_size: 16
   val_batch_size: 64
-  dataroot: /neodata/pathology_breast/aidea/dataset/ （預期上會接到你 datalist 中每個影像的前面）
+  dataroot: /neodata/pathology_breast/aidea/dataset/ (Dataroot is expected to be linked to the front of the image path in datalist)
   datalist: /neodata/pathology_breast/aidea/crop_code/datalist/fold_0.json
-  cache: false （如果 ram > 500GB 才考慮使用）
+  cache: false （true if your ram > 700GB）
   transforms_config:
     img_size: 1080
     random_transform: true （auto augmentation）
@@ -30,17 +39,17 @@ model_config:
     backbone: swin_s
     backbone_num_features: 1000
   loss: FL (Focal loss)
-  use_additional_loss: false (Augular Loss 此次沒使用到)
+  use_additional_loss: false (Augular Loss. It is not used in current process)
   optimizer: adamw
   lr: 0.0001
   scheduler:
     name: cosine
     T_max: 50
     eta_min: 0
-ckpt: ../checkpoint/swin_s_1080.ckpt
+ckpt: ../checkpoint/swin_s_1080.ckpt (checkpoint/model weight path)
 ```
-### Datalist 結構
-最終會是一份 json 檔，一個 `dict`，有三個 key: "training", "validation", "test"，每個 key 所對應的 value 是一個 `list` ，`list` 裡面有多個 `dict`，每個 `dict` 包含影像位置及 label
+### The Structure of Datalist
+Datalist is a JSON file, which is a `dict` format. The `dict` has 3 keys: "training", "validation" and "test". The value corresponding to each key is `list`, which has many `dict`, and each `dict` contains the image path and label.
 ```python
 {
     "training": [
@@ -57,10 +66,22 @@ ckpt: ../checkpoint/swin_s_1080.ckpt
 
 ## Inference 方法
 
-* 準備好訓練時使用到的 config file (`.yaml`), 在 `infer_public.py` 給 config file 位置即可（需要特別注意 infer_public 內有一行需要針對使用情況做修正， `data_list = json.load(open("../datalist/public_private.json"))` 請針對要 inference 的 data 給予正確的 json 檔）
-    * json 檔裡面是一個 `list` 結構，每一個元素皆是一個 `dict` ，形式為 {"image": image_path}, image_path 應替換成檔案的絕對路徑
-* 請在 config file 內指定你要的 checkpoint 路徑
-* 使用範例: 進入到 command 資料夾中，執行 `source infer_public.sh ../config/regnet.yaml` (可以在 `.sh` 裡面調整使用哪張 GPU)
+* Prepare the config file to be used during training (`.yaml`).
+  * Give the config file path in `infer_public.py`(Note that there is a line in infer_public that needs to be modified for usage. `data_list = json.load(open("../datalist/public_private.json"))` Please give the correct JSON file for the data to be inferred)
+  * The JSON file is `list` structure. Each element is `dict` structure in list in the format {"image": image_path}.
+    * image_path should be replaced by the absolute path.
+* Please specify the checkpoint path you want in the config file
+* Example: run `source infer_public.sh ../config/regnet.yaml` (You can adjust which GPU to use in `.sh`)
 
 ## Contact
-有關此份 code 的操作問題可以聯絡: rex19981002@gmail.com
+Questions about the actions of this code can be directed to: rex19981002@gmail.com
+
+## Citation
+```
+@misc{
+    title  = {crop_classification},
+    author = {Jia-Wei Liao, Yen-Jia Chen, Yi-Cheng Hung, Jing-En Hung, Shang-Yen Lee},
+    url    = {https://github.com/yenjia/AIdea_crops},
+    year   = {2022}
+}
+```
