@@ -64,7 +64,7 @@ Datalist is a JSON file, which is a `dict` format. The `dict` has 3 keys: "train
         ...
 ```
 
-## How to Inference
+## How to Make Inference
 
 * Prepare the config file to be used during training (`.yaml`).
   * Give the config file path in `infer_public.py`(Note that there is a line in infer_public that needs to be modified for usage. `data_list = json.load(open("../datalist/public_private.json"))` Please give the correct JSON file for the data to be inferred)
