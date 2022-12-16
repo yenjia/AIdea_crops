@@ -1,4 +1,4 @@
-# Crop_Classification
+# Crop Classification
 
 ## Setting the environment
 ```
