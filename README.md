@@ -1,14 +1,14 @@
 # Crop Classification
 
-## Setting the environment
+## Setting the Environment
 ```
 pip install -r requirements.txt
 ```
 
-## Download the checkpoint 
+## Download the Checkpoint 
 You can download the checkpoints from Google Drive: 
 
-## How to train the model?
+## How to Train the Model
 * There are some default models in the file `net.py`
 * Example: run `source train.sh ../config/regnet`
   * Note: You need to prepare datalist and  data first, and modify the path in the config file
@@ -64,7 +64,7 @@ Datalist is a JSON file, which is a `dict` format. The `dict` has 3 keys: "train
         ...
 ```
 
-## Inference 方法
+## How to Inference
 
 * Prepare the config file to be used during training (`.yaml`).
   * Give the config file path in `infer_public.py`(Note that there is a line in infer_public that needs to be modified for usage. `data_list = json.load(open("../datalist/public_private.json"))` Please give the correct JSON file for the data to be inferred)
