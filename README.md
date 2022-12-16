@@ -6,7 +6,7 @@ pip install -r requirements.txt
 ```
 
 ## Download the Checkpoint 
-You can download the checkpoints from Google Drive: 
+You can download the checkpoints from Google Drive: https://drive.google.com/drive/folders/1qCnjAqN5TmdW-kP0tgxRGA4cRyJAJgT7?usp=share_link
 
 ## How to Train the Model
 * There are some default models in the file `net.py`
