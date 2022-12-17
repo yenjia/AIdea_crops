@@ -6,7 +6,7 @@ accumulate_batches: 2
 precision: 16
 data_config:
   batch_size: 48
-  val_batch_size: 128
+  val_batch_size: 32
   dataroot: /neodata/pathology_breast/aidea/dataset/
   datalist: /neodata/pathology_breast/aidea/crop_code/datalist/fold_0.json
   cache: false

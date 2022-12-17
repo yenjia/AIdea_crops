@@ -7,7 +7,7 @@ precision: 16
 gradient_clip_val: 5.0
 data_config:
   batch_size: 16
-  val_batch_size: 64
+  val_batch_size: 16
   dataroot: /neodata/pathology_breast/aidea/dataset/
   datalist: /neodata/pathology_breast/aidea/crop_code/datalist/fold_0.json
   cache: false
