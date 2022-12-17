@@ -74,7 +74,8 @@ Datalist is a JSON file, which is a `dict` format. The `dict` has 3 keys: "train
     * The example datalist is in the `datalist` folder. (public_private.json)
 * Please specify the checkpoint path you want in the config file
 * Example: run `source reproduce.sh` (You can adjust which GPU to use in `infer_public.sh`)
-* The inference time required for each model varies, with estimates ranging from approximately 10 to 30 minutes.  
+* The inference time required for each model varies, with estimates ranging from approximately 10 to 30 minutes.
+* All of the results (the results of the four models on the public and private data) will be stored in a `private` folder. For this competition, we used an ensemble method, which requires these four CSV files.  
 
 ## Contact
 Questions about the actions of this code can be directed to: rex19981002@gmail.com
