@@ -25,7 +25,7 @@ precision: 16
 gradient_clip_val: 5.0
 data_config:
   batch_size: 16
-  val_batch_size: 64
+  val_batch_size: 64 (If you have a small gpu memory, you can reduce the number of batch size when you are doing the inference)
   dataroot: /neodata/pathology_breast/aidea/dataset/ (Dataroot is expected to be linked to the front of the image path in datalist)
   datalist: /neodata/pathology_breast/aidea/crop_code/datalist/fold_0.json
   cache: false （true if your ram > 700GB）
@@ -64,14 +64,17 @@ Datalist is a JSON file, which is a `dict` format. The `dict` has 3 keys: "train
         ...
 ```
 
-## How to Make Inference
+## How to Make Inference (Reproduce)
+* Setup the environment
 
 * Prepare the config file to be used during training (`.yaml`).
   * Give the config file path in `infer_public.py`(Note that there is a line in infer_public that needs to be modified for usage. `data_list = json.load(open("../datalist/public_private.json"))` Please give the correct JSON file for the data to be inferred)
   * The JSON file is `list` structure. Each element is `dict` structure in list in the format {"image": image_path}.
     * image_path should be replaced by the absolute path.
+    * The example datalist is in the `datalist` folder. (public_private.json)
 * Please specify the checkpoint path you want in the config file
-* Example: run `source infer_public.sh ../config/regnet.yaml` (You can adjust which GPU to use in `.sh`)
+* Example: run `source reproduce.sh` (You can adjust which GPU to use in `infer_public.sh`)
+* The inference time required for each model varies, with estimates ranging from approximately 10 to 30 minutes.  
 
 ## Contact
 Questions about the actions of this code can be directed to: rex19981002@gmail.com
