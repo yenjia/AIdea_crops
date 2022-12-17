@@ -62,7 +62,7 @@ def main(args):
     ids = [i["image"].split("/")[-1] for i in data_list]
 
     ds = Dataset(data=data_list, transform=val_transforms(**config["data_config"]["transforms_config"]))
-    loader = DataLoader(ds, batch_size=config["data_config"]["batch_size"], num_workers=8)
+    loader = DataLoader(ds, batch_size=config["data_config"]["val_batch_size"], num_workers=8)
 
     trainer = Trainer(logger=False, 
                         gpus=1, 
