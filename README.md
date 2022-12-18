@@ -2,6 +2,8 @@
 
 ## Setting the Environment
 ```
+conda create --name aidea python=3.9.15
+conda activate aidea
 pip install -r requirements.txt
 ```
 
@@ -70,12 +72,12 @@ Datalist is a JSON file, which is a `dict` format. The `dict` has 3 keys: "train
 * Prepare the config file to be used during training (`.yaml`).
   * Give the config file path in `infer_public.py`(Note that there is a line in infer_public that needs to be modified for usage. `data_list = json.load(open("../datalist/public_private.json"))` Please give the correct JSON file for the data to be inferred)
   * The JSON file is `list` structure. Each element is `dict` structure in list in the format {"image": image_path}.
-    * image_path should be replaced by the absolute path.
+    * image_path should be replaced by the **absolute path**.
     * The example datalist is in the `datalist` folder. (public_private.json)
 * Please specify the checkpoint path you want in the config file
 * Example: run `source reproduce.sh` (You can adjust which GPU to use in `infer_public.sh`)
 * The inference time required for each model varies, with estimates ranging from approximately 10 to 30 minutes.
-* All of the results (the results of the four models on the public and private data) will be stored in a `private` folder. For this competition, we used an ensemble method, which requires these four CSV files.  
+* All of the results (the results of the **four** models on the public and private data) will be stored in a `private` folder. For this competition, we used an ensemble method, which requires these four CSV files.  
 
 ## Contact
 Questions about the actions of this code can be directed to: rex19981002@gmail.com
